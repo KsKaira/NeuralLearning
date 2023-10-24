@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn about Ethical Hacking</title>
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        /* ==== "Inter" FONT-FAMILY FROM FONTS.GOOGLE.COM  ==== */
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Lobster+Two&display=swap');
+
+        /* ==== ROOT RESET ==== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* ==== CSS VARIABLES ==== */
+        :root {
+            --primary-color: #20C20E;
+            --link-color: white;
+            --btn-hover-color: #2b50c7;
+            --lg-heading: white;
+            --text-content: #0a0a0a;
+            --fixed-header-height: 4.5rem;
+        }
+
+        /* ==== RESET HTML ==== */
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: black;
+            color: white;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* ==== CONTAINER ==== */
+        .container {
+            width: 100%;
+        }
+
+        @media screen and (min-width: 1040px) {
+            .container {
+                width: 1040px;
+                margin: 0 auto;
+            }
+        }
+
+        /* ==== HEADER ==== */
+        .header {
+            height: var(--fixed-header-height);
+            padding: 0 1.7rem;
+        }
+
+        /* ==== NAV ==== */
+        .nav {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* ==== LOGO ==== */
+        .logo h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+        }
+
+        /* ====  NAV-MENU  ==== */
+        .nav_menu_list {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav_menu_list .nav_menu_item {
+            margin: 0 2rem;
+        }
+
+        .nav_menu_item .nav_menu_link {
+            font-size: 16.5px;
+            line-height: 27px;
+            color: var(--link-color);
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+        }
+
+        .nav_menu_link:hover {
+            color: var(--primary-color);
+        }
+
+        .toggle_btn {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--lg-heading);
+            z-index: 4;
+        }
+
+        .nav_menu,
+        .close_btn {
+            display: none;
+        }
+
+        .show {
+            right: 3% !important;
+        }
+
+        /* ====  WRAPPER ==== */
+        .wrapper {
+            width: 100%;
+            padding-left: 1.7rem;
+            padding-right: 1.7rem;
+            padding-top: 5rem;
+            margin-bottom: 5rem;
+        }
+
+        .grid-cols-2 {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .grid-item-1 {
+            padding-top: 5rem;
+            padding-left: 1.5rem;
+        }
+
+        .main-heading {
+            font-weight: 300;
+            font-size: 40px;
+            line-height: 55px;
+        }
+
+        .main-heading span {
+            color: var(--primary-color);
+        }
+
+        .info-text {
+            margin-top: 1.5rem;
+            font-size: 19px;
+            line-height: 28px;
+            color: lightgray;
+        }
+
+        .btn_wrapper {
+            margin-top: 3.5rem;
+            display: flex;
+            width: 100%;
+        }
+
+        .btn {
+            width: 110px;
+            height: 50px;
+            background-color: var(--primary-color);
+            display: block;
+            font-size: 16px;
+            color: #fff;
+            text-transform: capitalize;
+            border-radius: 7px;
+            letter-spacing: 1px;
+            transition: 0.4s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: gray;
+        }
+
+        .view_more_btn {
+            width: 180px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            letter-spacing: 0;
+            color: #fff;
+            font-weight: 500;
+            margin-right: 10px;
+            box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1);
+        }
+
+        .view_more_btn i {
+            margin-left: 0.7rem;
+        }
+
+        .view_more_btn:hover {
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .documentation_btn {
+            width: 150px;
+            height: 55px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0;
+            background-color: #e1e7fc;
+            color: #0e2a86;
+            box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1);
+        }
+
+        .documentation_btn:hover {
+            background-color: #d7ddf1;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .grid-item-2 {
+            width: 100%;
+            height: 100%;
+        }
+
+        .team_img_wrapper {
+            width: 500px;
+            max-width: 100%;
+            height: 440px;
+        }
+
+        .team_img_wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .grid-cols-3 {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 3rem;
+            row-gap: 2rem;
+            padding: 1rem;
+        }
+
+        .grid-col-item {
+            height: 100%;
+        }
+
+        .icon {
+            width: 100%;
+            line-height: 40px;
+        }
+
+        .icon svg {
+            width: 30px;
+            height: 30px;
+            color: #20c20e;
+        }
+
+        .featured_info {
+            width: 100%;
+        }
+
+        .featured_info span {
+            width: 100%;
+            display: block;
+            font-size: 21px;
+            line-height: 33px;
+            color: var(--lg-heading);
+        }
+
+        .featured_info p {
+            display: block;
+            width: 100%;
+            margin-top: 7px;
+            font-weight: 400;
+            color: lightgray;
+            line-height: 25px;
+            font-size: 15.5px;
+        }
+
+        footer {
+            width: 100%;
+            background-color: var(--primary-color);
+            height: 12px;
+            margin-top: 8rem;
+        }
+
+        /* ==== MEDIA QURIES FOR RESPONSIVE DESIGN ==== */
+        @media screen and (min-width: 768px) {
+            .toggle_btn {
+                display: none;
+            }
+
+            .nav_menu {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo h2 {
+                font-size: 23px;
+            }
+
+            .nav_menu {
+                position: fixed;
+                width: 93%;
+                height: 100%;
+                display: block;
+                top: 2.5%;
+                right: -100%;
+                background-color: gray;
+                padding: 3rem;
+                border-radius: 10px;
+                box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1);
+                z-index: 50;
+                transition: 0.4s;
+            }
+
+            .nav_menu_list {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 4rem;
+            }
+
+            .nav_menu_list .nav_menu_item {
+                margin: 1rem 0;
+            }
+
+            .nav_menu_item .nav_menu_link {
+                font-size: 18px;
+            }
+
+            .close_btn {
+                display: block;
+                position: absolute;
+                right: 10%;
+                font-size: 25px;
+                color: #50689e;
+            }
+
+            .close_btn:hover {
+                color: #000;
+            }
+
+            .wrapper {
+                padding: 0 0.7rem;
+            }
+
+            .grid-item-1 {
+                padding-left: 0rem;
+            }
+
+            .main-heading {
+                font-size: 35px;
+            }
+
+            .view_more_btn {
+                width: 140px;
+                height: 55px;
+                font-size: 13.5px;
+                margin-right: 1rem;
+            }
+
+            .grid-cols-3 {
+                grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+            }
+
+            .featured_info p {
+                line-height: 23px;
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .wrapper {
+                padding-top: 3rem;
+            }
+
+            .grid-cols-2 {
+                grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+            }
+
+            .grid-item-1 {
+                order: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding-top: 0;
+            }
+
+            .main-heading {
+                font-size: 32px;
+                text-align: center;
+                line-height: 40px;
+            }
+
+            .info-text {
+                font-size: 16px;
+                text-align: center;
+                padding: 0.7rem;
+            }
+
+            .btn_wrapper {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .grid-item-2 {
+                order: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .team_img_wrapper {
+                width: 350px;
+                height: 350px;
+            }
+
+            .featured_info span {
+                font-size: 19px;
+            }
+        }
+
+        /* Set a max-width for the container */
+        .about_container {
+            max-width: 800px;
+            margin: 0 auto;
+            /* Center the container */
+        }
+
+        /* Make the font size responsive */
+        h2 {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 767px) {
+
+            /* For smaller screens, reduce the font size */
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+                padding: 40px;
+            }
+        }
+
+        .panel-default>.panel-heading {
+            background-color: #000;
+        }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- ==== ANIMATE ON SCROLL CSS CDN  ==== -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="container header">
+        <!-- ==== NAVBAR ==== -->
+        <nav class="nav">
+            <div class="logo">
+                <h2>Neural Learning.</h2>
+            </div>
+
+            <div class="nav_menu" id="nav_menu">
+                <button class="close_btn" id="close_btn">
+                    <i class="ri-close-fill"></i>
+                </button>
+
+                <ul class="nav_menu_list">
+                    <li class="nav_menu_item">
+                        <a href="index.html" class="nav_menu_link">Home</a>
+                    </li>
+                    <li class="nav_menu_item">
+                        <a href="learn.html" class="nav_menu_link">Learn</a>
+                    </li>
+                    <li class="nav_menu_item">
+                        <a href="about.html" class="nav_menu_link">About</a>
+                    </li>
+                    <li class="nav_menu_item">
+                        <a href="developers.html" class="nav_menu_link">Developers</a>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="toggle_btn" id="toggle_btn">
+                <i class="ri-menu-line"></i>
+            </button>
+        </nav>
+    </header>
+
+    <div class="about_container">
+        <h2 class="text-center">Hello, world!</h2>
+        <p>Welcome to Neural Learning! Here you will learn to protect yourself from being scammed, bullied, abused online and together make the internet safer and even more better.
+            Hack with a purpose, hack with ethics!</p>
+    </div>
+
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Introduction: The Need
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        In today’s world, with the extensive use of the internet and modern technology, protecting our digital data has become a major challenge. Businesses can suffer serious consequences if they do not implement an effective information security plan. As businesses store more of their and their customers' data online, they are becoming increasingly vulnerable to cyber thieves. Considering a single aspect- ‘data security’, a number of reasons can be listed boasting its importance, but the reasons that matter the most to you, as organisation managers, and whose ineffectiveness could yield high losses, are:
+                        <br>◉ Data Security helps you build trust with your customers/visitors. The visitors are ensured that the data they are providing you is completely secure with you, and is not shared with anyone else.<br>
+                        ◉ Data Security could protect your organisation's finances from being looted.<br>
+                        ◉ On the whole, Data Security will surely help you maintain business continuity.
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Hacking: What is it?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Hacking is the process of exploiting vulnerabilities to gain unauthorised access to any computer, smartphone, tablet, or network system.
+Hackers use advanced computer and programming skills to exploit and get into the victim’s system without their knowledge and gain lots of personal information including personal and financial data with passwords.
+From the above description of hackers, they appear to be fearsome people, no? And that’s what the general perception is.
+But ‘hacker’ is not only a word with a negative connotation.
+It is not all hackers who use their skills to gain access to the victim’s system, but rather their are hackers who use their skills to protect confidential information and they are called Ethical Hackers or ‘white hat hackers’.
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Techniques: What common techniques do Hackers use to steal information
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <b>1. Bait and Switch</b><br>
+                        The hacker buys advertisement space on any website and create an eye-catching advertisement. Whenever a user clicks on the advertisement, he is redirected to a malicious web page. 
+                         <a href="https://youtu.be/_FTy3q6SbcE">Video</a>
+                        <br>
+                        <br>
+                        <b>2. Virus</b><br>
+                        The hacker instalsinstalls them on the victim’s computer to get unauthorisedunauthorized access. Virus keeps sending data to the hacker regularly and can also perform various tasks on the victim’s system.
+                         <a href="https://youtu.be/c34QwtYI40g">Video</a>
+                        <br>
+                        <br>
+                       <b>3. Cookies</b><br>
+                        The more that we like eating cookies, the more dangerous are web cookies for our DATA. 
+                        We use Browser to search for different websites and those websites store cookies in your browser. This includes our search history, some account passwords, and other useful information, When an attacker gets on your browser’s cookie session then he can authenticate himself as you on a browser and then can conduct attacks. 
+                         <a href="https://youtu.be/QWw7Wd2gUJk">Video</a>
+                        <br>
+                        <br>
+                       <b>4. Denial of Service</b><br>
+                        It involves flooding the network with a huge amount of data packets to bring the system down. In this manner, users are unable to use the service due to the real-time crash of the system. Hacker uses too many requests to lower down the system so that the system cannot respond to the actual or original request from genuine users.
+                         <a href="https://youtu.be/OWLGUgiz_eE">Video</a>
+                        <br>
+                        <br>
+                        <b>5. Keylogger</b><br>
+                        It is software that is used to record key sequences and store the strokes of keys pressed on your keyboard to a file on your computer. These log files can contain some useful and sensitive data of t
+                        he user that may be account information and different passwords.
+                         <a href="https://youtu.be/yFWS3UJ-j-Q">Video</a>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
+                        Solution: Ethical Hacker enters the scene
+                    </button>
+                </h2>
+                <div id="collapseFourth" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        A lot discussed about the threats, but what is the solution to all this? I can’t live my life with the constant threat of a cyber attack!
+                        But, remember, not all hacking is bad! This brings us to the second type of hacking: Ethical hacking >><br><br>
+                        Ethical hacking is an authorized practice of detecting vulnerabilities in an application, system, or organisation’s infrastructure and bypassing system security to identify potential data breaches and threats in a network.
+                        An ethical hacker looks for weak spots in a system or network that malicious hackers can exploit or destroy.
+                        They are legally hired by the organisation to perform such activities in order to test the system’s defences.
+                        Some of the most common vulnerabilities discovered by ethical hackers include:<br>
+                        
+                        <b>INJECTION ATTACKS : </b>
+                       <center> <img src="source pic1.png" height="300" width="300"></center>
+                       <br>
+        
+                       <b> BROKEN AUTHENTICATION :</b>
+                       <br>
+                       <center><img src="source pic2.png" height="300" width="300"></center>
+                       <br>
+                       <br> 
+                      <b> SECURITY MISCONFIGURATION : </b>
+                      <br>
+                      <center><img src="source ic 3.png" height="300" width="300"></center>
+                      <br>
+                      <b>  USE OF COMPONENTS USING VULNERABILITIES :</b>
+                      <center><img src="source pic 4.png" height="300" width="300"></center>
+                      <br>
+                      <br>
+                       <b> SENSITIVE DATA EXPOSURE : </b>
+                       <center><img src="source pic 5.png" height="300" width="300"></center>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
+                       
+                        A GoThrough: Phases of Ethical Hacking:
+
+                    </button>
+                </h2>
+                <div id="collapseFifth" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        Carrying out an ethical hack involves duplicating strategies and actions of malicious attackers. It involves:<br><br>
+                        <b>The Reconnaissance Phase</b> 
+<p><li>Reconnaissance is the preliminary stage of ethical hacking in which the hacker becomes aware and gathers all the information beforehand regarding his target and gets to know about the system's vulnerabilities so that he can exploit the system in the later phases of hacking.</p></li>
+<b>The Scanning Phase</b>
+<p><li>Hackers are now probably seeking any information that can help them perpetrate attacks such as computer names, IP addresses, and user accounts. Now that the hacker has some basic information, the hacker now moves to the next phase and begins to test the network for other avenues of attack. The hacker decides to use a couple of methods for this end to help map the network. </li></p>
+<b>The Gaining Access Phase</b>
+<p><li>This phase has a more technical approach as the data gained is used to get into the system and get access to the real data. The hacker designs the blueprint of the network of the target with the help of data collected during Phase 1 and Phase 2. The hacker has finished enumerating and scanning the network and now decides that they have some options to gain access to the network.</li></p>
+<b>The Maintaining Access Phase</b>
+<p><li>Once a hacker has gained access, they want to keep that access for future exploitation and attacks. The hacker tries to continue the access by maintaining the presence within the targeted network and keeps on acquiring the data. 
+This is known as the key phase for ethical hacking as it shows how the security personnel responds if a system has started showing signs of damage.</li></p>
+<b>The Covering Phase</b>
+<p><li>In this stage of ethical hacking, the hackershacker are required to cover up their tracks. It aims to erase all the digital signs left by the hacker during the previous stages. If not removed, these traces might prove the presence of an ethical hacker in the targeted computer system.</li></p>
+<b>The Analysis Phase</b>
+<p><li>After the testing period, ethical hackers prepare a detailed report. This documentation includes steps to compromise the discovered vulnerabilities and steps to patch or mitigate them.
+
+Consider this true: “It takes a thief to catch a thief!”
+            
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSixth" aria-expanded="false" aria-controls="collapseSixth">
+                        How do you protect yourself as an individual?
+
+                    </button>
+                </h2>
+                <div id="collapseSixth" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+<ul>
+<li>◉ Use passwords that cannot be broken by brute force or guessing.</li>
+<li>◉ Consider 2-factor authentication when possible.</li>
+<li>◉ Be careful of password request emails.  Services like Heroku, Gmail, and others will not request to type in passwords for additional promotion or service.</li>
+<li>◉ Verify the source of contact.</li>
+<li>◉ Before clicking a link, investigate it.</li>
+<li>◉ Always scan a file and never click on batch files.</li>
+<li>◉ Always see the background services that are running on your device and never rely on others’ devices.</li>
+<li>◉ Be sure to have an antivirus installed and set root passwords for installation.</li>
+<li>◉ Log out of sessions and clean the cache.</li>
+
+                    </div>
+                </div>
+	</div>
+<div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeventh" aria-expanded="false" aria-controls="collapseSeventh">
+                       	Case Studies
+
+                    </button>
+                </h2>
+                <div id="collapseSeventh" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <li><b>Yahoo Cyberattack:</b><i> <a href="https://www.cashfloat.co.uk/blog/technology-innovation/yahoo-cyber-attack/">Cyber Attack Yahoo</a></i>
+<br>
+                        Yahoo announced first details about the Yahoo cyber attack in September 2016. Hackers stole 500 million users’ data back in late 2014. Yahoo was aware of the intrusion but had not realised the extent of the breach. In July 2016, whilst investigating a separate data breach, Yahoo found information of 200 million customers’ accounts appear for sale on a darknet market site. The seller, with the nickname ‘Peace’, is believed to be a broker of information. They are also believed to be connected to data stolen previously from MySpace and LinkedIn. 
+                        How was it hacked? 
+                        Yahoo uses cookies to give users quick access to their username and password information without needing to re-enter it every time they log in on the site.  However, people believe that the hackers gained access to the proprietary code and therefore were able to forge cookies.  These cookies allow them to log into users’ accounts without even a password.
+                        Lessons  
+                        On this occasion Yahoo was vulnerable to a security breach but who knows which sites the hackers will turn their attention to next?  In the light of this, how can you protect yourself and your financial dealings safe online?
+                        Of course, we trust sites to keep our data safe but there are still some common sense guidelines we should follow to make sure that we are protecting our personal information, and we are less likely to be victims of phishing or identity theft.
+                        </li><br>
+                        <center><img src="source pic 6.png" height="300" width="300"></center>
+                        <br>
+                        <br>
+                        <li><b>WannaCry Ransomware Attack 2017:</b><i> <a href="https://en.wikipedia.org/wiki/WannaCry_ransomware_attack#Impact">Ransomware Attack Impact</a>,
+                        <a href="https://www.kaspersky.co.in/resource-center/threats/ransomware-wannacry">Ransomeware Wannacry</a></i>
+                        <br>
+                        WannaCry is a ransomware worm that spread rapidly across a number of computer networks in May of 2017. After infecting a Windows computer, it encrypts files on the PC's hard drive, making them impossible for users to access, then demands a ransom payment in bitcoin in order to decrypt them. The attackers demanded $300 worth of bitcoins and then later increased the ransom demand to $600 worth of bitcoins. If victims did not pay the ransom within three days, victims of the WannaCry ransomware attack were told that their files would be permanently deleted.
+                        The ransomware campaign was unprecedented in scale according to Europol, which estimates that around 200,000 computers were infected across 150 countries. According to Kaspersky Lab, the four most affected countries were Russia, Ukraine, India and Taiwan.
+                        One of the largest agencies struck by the attack was the National Health Service hospitals in England and Scotland.
+                        A third of NHS hospital trusts were affected by the attack. Terrifyingly ambulances were reportedly rerouted, leaving people in need of urgent care in need. It was estimated to cost the NHS a whopping £92 million after 19,000 appointments were canceled as a result of the attack.
+                        </li>
+                        <br>
+                       <li><B> WORDPRESS: When ethical hacker helped:</B>
+                       <i><a href=" https://www.knowledgehut.com/blog/security/ethical-hacking-case-study">Yahoo Case Study</a><BR></i>
+                        Back in 2019, a new plugin was released for WordPress called Social Network Tabs. This plugin got very popular, but none knew about the vulnerability. It basically helped users share their website content on social media.
+                        Baptiste Robert was a French security researcher who was known online by his user handle, Elliot Alderson. He was the one who found the crack in the plugin, which was given the ID CVE-2018-20555 by MITRE.
+                        The flaw in the plugin compromised the user's Twitter account. Since the plugin is connected to the user's social media account, the vulnerability leaked the user's social media details. Robert was the first to spot this leak and was fast to notify Twitter about it, which helped secure the user's accounts that got affected by it.
+                        
+                    </div>
+                </div>
+	</div>
+
+        </div>
+    </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        const navId = document.getElementById("nav_menu"),
+            ToggleBtnId = document.getElementById("toggle_btn"),
+            CloseBtnId = document.getElementById("close_btn");
+
+        // ==== SHOW MENU ==== //
+        ToggleBtnId.addEventListener("click", () => {
+            navId.classList.add("show");
+        });
+
+        // ==== HIDE MENU ==== //
+        CloseBtnId.addEventListener("click", () => {
+            navId.classList.remove("show");
+        });
+
+        // ==== Animate on Scroll Initialize  ==== //
+        AOS.init();
+
+        // ==== GSAP Animations ==== //
+        // ==== LOGO  ==== //
+        gsap.from(".logo", {
+            opacity: 0,
+            y: -10,
+            delay: 1,
+            duration: 0.5,
+        });
+        // ==== NAV-MENU ==== //
+        gsap.from(".nav_menu_list .nav_menu_item", {
+            opacity: 0,
+            y: -10,
+            delay: 1.4,
+            duration: 0.5,
+            stagger: 0.3,
+        });
+        // ==== TOGGLE BTN ==== //
+        gsap.from(".toggle_btn", {
+            opacity: 0,
+            y: -10,
+            delay: 1.4,
+            duration: 0.5,
+        });
+        // ==== MAIN HEADING  ==== //
+        gsap.from(".main-heading", {
+            opacity: 0,
+            y: 20,
+            delay: 2.4,
+            duration: 1,
+        });
+        // ==== INFO TEXT ==== //
+        gsap.from(".info-text", {
+            opacity: 0,
+            y: 20,
+            delay: 2.8,
+            duration: 1,
+        });
+        // ==== CTA BUTTONS ==== //
+        gsap.from(".btn_wrapper", {
+            opacity: 0,
+            y: 20,
+            delay: 2.8,
+            duration: 1,
+        });
+        // ==== TEAM IMAGE ==== //
+        gsap.from(".team_img_wrapper img", {
+            opacity: 0,
+            y: 20,
+            delay: 3,
+            duration: 1,
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+<footer class="bg-dark-1">
+    <section id="footer" class="py-5">
+      <div class="container text-center">
+        <h6 class="m-0 mt-4 text-center text-white text-capitalize">Copyright &copy; 2023 designed by Team Neural Learning</h6>
+      </div>
+    </section>
+  </footer>
+
+</html>
